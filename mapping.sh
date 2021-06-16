@@ -1,10 +1,11 @@
 #!/bin/bash
 
+cd ..
 mkdir mapping
 cd mapping
 
 #check for live hosts
-nmap -iL /root/ips -sn -PE -oG - | awk '/Up/{print $2}' > hosts
+nmap -iL ../ips -sn -PE -oG - | awk '/Up/{print $2}' > hosts
 
 #scan for ftp
 nmap -Pn -iL hosts -p 21 -oG - | awk '/open/{print $2}' > ftp-hosts.txt
