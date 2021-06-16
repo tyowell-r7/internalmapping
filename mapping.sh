@@ -33,6 +33,8 @@ awk '/ 80\/open/{print "http://" $2 "/"}' < http-hosts.txt >> http-urls.txt
 awk '/ 443\/open/{print "https://" $2 "/"}' < http-hosts.txt >> http-urls.txt
 awk '/ 8080\/open/{print "http://" $2 ":8080/"}' < http-hosts.txt >> http-urls.txt
 awk '/ 8443\/open/{print "https://" $2 ":8443/"}' < http-hosts.txt >> http-urls.txt
+awk '/ 443\/open/{print $2}' < http-hosts.txt >> ssl-urls.txt
+
 
 #scan for cisco smart install
 nmap -Pn -iL hosts -p 4786 -oG - | awk '/open/{print $2}' > smi-hosts.txt
